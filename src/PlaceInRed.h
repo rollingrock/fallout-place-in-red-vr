@@ -15,6 +15,9 @@ namespace PlaceInRed
 	REL::Relocation<std::uintptr_t> pRedCall{ REL::Offset(0x0202270) };
 	REL::Relocation<std::uintptr_t> pYellow{ REL::Offset(0x0204323) };
 	REL::Relocation<std::uintptr_t> pWSTimer{ REL::Offset(0x0226dda) };
+	REL::Relocation<std::uintptr_t> pGroundSnap{ REL::Offset(0x026316d) };
+	REL::Relocation<std::uintptr_t> pObjectSnap{ REL::Offset(0x01ffd86) };
+	REL::Relocation<std::uintptr_t> pPowerColorCall{ REL::Offset(0x0216f00) };
 
 	std::uint8_t NOP3[3] = { 0x0F, 0x1F, 0x00 };                                // 3 byte nop
 	std::uint8_t NOP4[4] = { 0x0F, 0x1F, 0x40, 0x00 };                          // 4 byte nop
@@ -35,6 +38,8 @@ namespace PlaceInRed
 	std::uint8_t pYellow_old[3] = { 0x8B, 0x58, 0x14 };
 	std::uint8_t pTIMER_old[6] = { 0x0F, 0x84, 0xE5, 0x00, 0x00, 0x00 };
 	std::uint8_t pTIMER_new[6] = { 0xE9, 0xDE, 0x00, 0x00, 0x00, 0x90 };  //jmp instead
+	std::uint8_t pObjectSnap_old[8];
+	std::uint8_t pObjectSnap_new[8] = { 0x0F, 0x57, 0xF6, 0x0F, 0x1F, 0x44, 0x00, 0x00 };  // xorps xmm6, xmm6; NOP5;
 
 	// Simple function to read memory (credit reg2k).
 	static bool ReadMemory(uintptr_t addr, void* data, size_t len)
@@ -88,6 +93,13 @@ namespace PlaceInRed
 		REL::safe_write(pYellow.address(), NOP3, sizeof(NOP3));
 
 		REL::safe_write(pWSTimer.address(), pTIMER_new, sizeof(pTIMER_new));
+
+		data = 0x85;
+		REL::safe_write(pGroundSnap.address() + 0x1, &data, sizeof(data));
+
+		REL::safe_write(pObjectSnap.address(), pObjectSnap_new, sizeof(pObjectSnap_new));
+
+		REL::safe_write(pPowerColorCall.address(), NOP5, sizeof(NOP5));
 	}
 
 	void Install() {
@@ -97,6 +109,7 @@ namespace PlaceInRed
 		ReadMemory(pD.address(), pD_old, sizeof(pD_old));
 		ReadMemory(pF.address(), pF_old, sizeof(pF_old));
 		ReadMemory(pRedCall.address(), pRedCall_old, sizeof(pRedCall_old));
+		ReadMemory(pObjectSnap.address(), pObjectSnap_old, sizeof(pObjectSnap_old));
 
 		EnableRedPlacement();
 	}
