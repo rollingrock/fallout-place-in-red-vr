@@ -83,7 +83,7 @@ namespace PlaceInRed
 
 		data = 0x0;
 		REL::safe_write(pRed.address() + 0xC, &data, sizeof(data));
-		REL::safe_write(pRedCall.address(), NOP5, sizeof(NOP3));
+		REL::safe_write(pRedCall.address(), NOP5, sizeof(NOP5));
 
 		REL::safe_write(pYellow.address(), NOP3, sizeof(NOP3));
 
