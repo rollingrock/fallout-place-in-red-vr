@@ -5,7 +5,7 @@ namespace PlaceInRed
 	REL::Relocation<std::uintptr_t> pA{ REL::Offset(0x02020ab) };
 	REL::Relocation<std::uintptr_t> pB{ REL::Offset(0x0200fe8) };
 	REL::Relocation<std::uintptr_t> pC{ REL::Offset(0x0201fb2) };
-	REL::Relocation<std::uintptr_t> pD{ REL::Offset(0x0201fe6) };
+	REL::Relocation<std::uintptr_t> pD{ REL::Offset(0x0202448) };
 	REL::Relocation<std::uintptr_t> pE{ REL::Offset(0x020b94c) };
 	REL::Relocation<std::uintptr_t> pF{ REL::Offset(0x02022fa) };
 	REL::Relocation<std::uintptr_t> pG{ REL::Offset(0x0200f1e) };
@@ -30,7 +30,7 @@ namespace PlaceInRed
 	std::uint8_t pJ_old[2] = { 0x74, 0x35 };
 	std::uint8_t pJ_new[2] = { 0xEB, 0x29 };
 	std::uint8_t pK_old[6] = { 0x0F, 0x85, 0xCB, 0x00, 0x00, 0x00 };
-	std::uint8_t pK_new[7] = { 0xEB, 0x18, 0x90, 0x90, 0x90, 0x90 };
+	std::uint8_t pK_new[7] = { 0xEB, 0x1A, 0x90, 0x90, 0x90, 0x90 };
 	std::uint8_t pRedCall_old[5];
 	std::uint8_t pYellow_old[3] = { 0x8B, 0x58, 0x14 };
 	std::uint8_t pTIMER_old[6] = { 0x0F, 0x84, 0xE5, 0x00, 0x00, 0x00 };
@@ -62,8 +62,8 @@ namespace PlaceInRed
 		data = 0;
 		REL::safe_write(pB.address() + 0x1, &data, sizeof(data));
 
-		REL::safe_write(pC.address(), pC_new, sizeof(pC_old));
-		REL::safe_write(pC.address() + 0x10, pK_new, sizeof(pK_old));
+		REL::safe_write(pC.address(), pC_new, sizeof(pC_new));
+		REL::safe_write(pC.address() + 0x10, pK_new, sizeof(pK_new));
 		REL::safe_write(pC.address() + 0x21, &data, sizeof(data));
 
 		REL::safe_write(pD.address(), pD_new, sizeof(pD_new));
