@@ -1,0 +1,22 @@
+{
+  "name": "place-in-red-vr",
+  "version-string": "1.0.0",
+  "description": "Allows for placing workshop objects in red",
+  "homepage": "https://github.com/rollingrock/FalloutVRESL",
+  "license": "GPL-3.0",
+  "dependencies": [
+    "boost-stl-interfaces",
+    "robin-hood-hashing",
+    "rsm-binary-io",
+    "rsm-mmio",
+    "srell",
+    "spdlog",
+    "xbyak",
+    "args",
+    "frozen",
+    "nowide",
+    "catch2",
+    "rapidcsv"
+  ],
+  "builtin-baseline": "b4a3d89125e45bc8f80fb94bef9761d4f4e14fb9"
+}
