@@ -11,6 +11,7 @@
 #include <robin_hood.h>
 #include <spdlog/sinks/basic_file_sink.h>
 #include <xbyak/xbyak.h>
+#include <toml++/toml.h>
 #pragma warning(pop)
 
 namespace logger = F4SE::log;

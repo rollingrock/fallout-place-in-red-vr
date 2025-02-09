@@ -1,0 +1,5 @@
+[PlaceInRedVR]
+EnableRedPlacement = true              # Enables placing objects in normally red areas.   So object can be placed floating/intersection/outside the border/etc
+EnableGroundSnap = true                # Enables if objects snap to the ground when being placed
+EnableObjectSnap = false               # Enables if some objects such as fences snap to specific configurations or can be placed freely
+EnableOutlines = true                  # Enables if outlines will appear on objects while in workshop placement mode

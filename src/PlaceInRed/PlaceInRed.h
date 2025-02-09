@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Settings/Settings.h"
+
 namespace PlaceInRed
 {
 	class Patches
@@ -130,10 +132,10 @@ namespace PlaceInRed
 
 	void EnableInitialDefault() {
 		logger::info("Enabling Initial Defaults");
-		Patches::PatchRed(true);
-		Patches::PatchGroundSnap(true);
-		Patches::PatchObjectSnap(true);
-		Patches::PatchOutlines(false);
+		Patches::PatchRed(*Settings::EnableRedPlacement);
+		Patches::PatchGroundSnap(*Settings::EnableGroundSnap);
+		Patches::PatchObjectSnap(*Settings::EnableObjectSnap);
+		Patches::PatchOutlines(*Settings::EnableOutlines);
 		logger::info("Initial Defaults Installed");
 	}
 }

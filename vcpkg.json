@@ -14,6 +14,7 @@
     "xbyak",
     "args",
     "frozen",
+    "tomlplusplus",
     "nowide",
     "catch2",
     "rapidcsv"
