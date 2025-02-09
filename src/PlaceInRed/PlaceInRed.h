@@ -92,8 +92,8 @@ namespace PlaceInRed
 		{
 		public:
 			static void Install(std::uint8_t* a_data, size_t a_size) {
-				static REL::Relocation<std::uintptr_t> target{ REL::Offset(offset)};
-				REL::safe_write(target.address() + 0x6, a_data, a_size);
+				REL::Relocation<std::uintptr_t> target{ REL::Offset(offset)};
+				REL::safe_write(target.address(), a_data, a_size);
 			}
 		};
 	};
