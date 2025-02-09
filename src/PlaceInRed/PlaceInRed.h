@@ -46,6 +46,8 @@ namespace PlaceInRed
 				Patch<0x0216f00>::Install(nop.data(), 5);  // Power Color Override
 				setCode({ 0xE9, 0xDE, 0x00, 0x00, 0x00, 0x90, 0x90, 0x90 });
 				Patch<0x0226dda>::Install(code.data(), 6);  // WSTimer
+
+				logger::info("Patches for placing in red enabled");
 			} 
 			else {
 				setCode({ 0x0F, 0xB6, 0x05, 0x2E, 0xF5, 0x73, 0x05, 0x90});
@@ -66,13 +68,21 @@ namespace PlaceInRed
 				Patch<0x0216f00>::Install(code.data(), 5);  // Power Color Override
 				setCode({ 0x0F, 0x84, 0xE5, 0x00, 0x00, 0x00, 0x90, 0x90 });
 				Patch<0x0226dda>::Install(code.data(), 6);  // WSTimer
+				logger::info("Patches for placing in red disabled");
 			}
+
 		}
 
 		static void PatchGroundSnap(bool enable)
 		{
 			std::uint8_t code = enable ? 0x85 : 0x86;
 			Patch<0x026316d + 0x1>::Install(&code, 1); 
+
+			if (enable) {
+				logger::info("Ground snap enabled");
+			} else {
+				logger::info("Ground snap disabled");
+			}
 		}
 
 		static void PatchObjectSnap(bool enable)
@@ -83,6 +93,26 @@ namespace PlaceInRed
 			} else {
 				std::array<std::uint8_t, 8> code = { 0xF3, 0x0F, 0x10, 0x35, 0x5A, 0x33, 0x50, 0x03};
 				Patch<0x01ffd86>::Install(code.data(), 8); 
+			}
+			if (enable) {
+				logger::info("Object snap enabled");
+			} else {
+				logger::info("Object snap disabled");
+			}
+		}
+
+		static void PatchOutlines(bool enable)
+		{
+			std::uint8_t code = enable ? 0x01 : 0x00;
+			Patch<0x01f5c80 + 0x6>::Install(&code, 1); 
+
+			code = enable ? 0x76 : 0xEB;
+			Patch<0x01f5c80 + 0xD>::Install(&code, 1); 
+
+			if (enable) {
+				logger::info("Outlines enabled");
+			} else {
+				logger::info("Outlines disabled");
 			}
 		}
 
@@ -103,5 +133,7 @@ namespace PlaceInRed
 		Patches::PatchRed(true);
 		Patches::PatchGroundSnap(true);
 		Patches::PatchObjectSnap(true);
+		Patches::PatchOutlines(false);
+		logger::info("Initial Defaults Installed");
 	}
 }
