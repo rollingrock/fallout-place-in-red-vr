@@ -22,7 +22,7 @@ namespace PlaceInRed
 			Patch<0x02020ab + 0x06>::Install(code.data(), 1);  // A1
 			Patch<0x0200fe8 + 0x01>::Install(code.data(), 1);  // B
 			Patch<0x0201fb2 + 0x21>::Install(code.data(), 1);   // C3
-			Patch<0x282d6b7 + 0x0C>::Install(code.data(), 1);   // RED
+			Patch<0x282d6c8 + 0x06>::Install(code.data(), 1);  // RED
 			code[0] = enable ? 0x1 : 0x2;
 			Patch<0x02020ab + 0x0C>::Install(code.data(), 1);   // A2
 			code[0] = enable ? 0xEB : 0x76;
@@ -77,7 +77,7 @@ namespace PlaceInRed
 
 		static void PatchGroundSnap(bool enable)
 		{
-			std::uint8_t code = enable ? 0x85 : 0x86;
+			std::uint8_t code = enable ? 0x86 : 0x85;
 			Patch<0x026316d + 0x1>::Install(&code, 1); 
 
 			if (enable) {
@@ -90,10 +90,10 @@ namespace PlaceInRed
 		static void PatchObjectSnap(bool enable)
 		{
 			if (enable) {
-				std::array<std::uint8_t, 8> code = { 0x0F, 0x57, 0xF6, 0x0F, 0x1F, 0x44, 0x00, 0x00 };
+				std::array<std::uint8_t, 8> code = { 0xF3, 0x0F, 0x10, 0x35, 0x5A, 0x33, 0x50, 0x03};
 				Patch<0x01ffd86>::Install(code.data(), 8);  
 			} else {
-				std::array<std::uint8_t, 8> code = { 0xF3, 0x0F, 0x10, 0x35, 0x5A, 0x33, 0x50, 0x03};
+				std::array<std::uint8_t, 8> code = { 0x0F, 0x57, 0xF6, 0x0F, 0x1F, 0x44, 0x00, 0x00 };
 				Patch<0x01ffd86>::Install(code.data(), 8); 
 			}
 			if (enable) {
