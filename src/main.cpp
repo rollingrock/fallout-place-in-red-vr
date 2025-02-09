@@ -46,6 +46,7 @@ extern "C" DLLEXPORT bool F4SEAPI F4SEPlugin_Query(const F4SE::QueryInterface* a
 extern "C" DLLEXPORT bool F4SEAPI F4SEPlugin_Load(const F4SE::LoadInterface* a_f4se)
 {
 	InitializeLog();
+	Settings::load();
 	F4SE::Init(a_f4se, false);
 	F4SE::GetPapyrusInterface()->Register(Papyrus::RegisterFunctions);
 
@@ -55,6 +56,7 @@ extern "C" DLLEXPORT bool F4SEAPI F4SEPlugin_Load(const F4SE::LoadInterface* a_f
 
 	PlaceInRed::EnableInitialDefault();
 
+	logger::info("Place In Red For VR loaded"sv);
 	return true;
 }
 
