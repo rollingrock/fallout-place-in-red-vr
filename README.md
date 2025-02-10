@@ -1,9 +1,6 @@
 # Fallout Place In Red VR
 
-Mod to allow for placing workshop items in red areas for the VR version of the game.    Based on patches for the [NG place in red mod](https://www.nexusmods.com/fallout4/mods/14601?tab=description)   
-
-## NOTE THIS IS JUST STARTING SO BELOW IS NOT UPDATED AND A LOT OF WORK LEFT TO DO
-
+Mod to allow for placing workshop items in red areas for the VR version of the game.    Based on patches for the psc87's [NG place in red mod](https://www.nexusmods.com/fallout4/mods/14601?tab=description)   
 
 ## Requirements
 
