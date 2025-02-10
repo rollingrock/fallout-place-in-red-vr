@@ -48,10 +48,12 @@ cmake --build buildvr --config Release
 
 ## Credits
 
-Skyrim/Fallout modding is built on the community. While there are too many to count, we couldn't have done this without foundational work since the original Skyrim release.
+Skyrim/Fallout modding is built on the community. I cannot ever have done any of my mods alone and the work continues to be built off of people such as listed below.
 
+- psc87 - for NG version of this mod
 - alandtse for all the tools and commonlib direction
 - Contributors to [CommonLib (check fork network and all the credits)](https://github.com/alandtse/CommonLibVR/tree/vr), including the original author, [Ryan](https://github.com/Ryan-rsm-McKenzie).
 - [F4SE Team](https://skse.silverlock.org/)
 - [Powerof3](https://github.com/powerof3)
+- shad0wshayd3 - for easy to follow commonlib examples to learn off of
 
